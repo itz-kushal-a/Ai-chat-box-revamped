@@ -4,7 +4,14 @@ A production-ready, scalable monorepo for a full-stack AI-Chat-Box application. 
 
 ## 🚀 Project Structure
 
-- **`apps/backend`**: Node.js + Express + TypeScript API.
+- **`docs/`**: Project documentation (PRD, Architecture, Database, UI/UX, etc.).
+- **`apps/backend`**: Professional Node.js + Express + TypeScript API.
+  - **Structure**: Controllers, Services, Middleware, and Routes.
+  - **Endpoints**:
+    - `POST /api/chat`: General AI conversation.
+    - `POST /api/explain-code`: Analyze and explain code snippets.
+    - `POST /api/fix-code`: Identify and fix bugs in code.
+    - `POST /api/generate-code`: Generate code based on prompts.
 - **`apps/frontend`**: React + Vite + TypeScript Web App.
 - **`apps/mobile`**: React Native (Expo) Mobile App.
 - **`apps/desktop`**: Electron Desktop Application.

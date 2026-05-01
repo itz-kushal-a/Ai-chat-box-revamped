@@ -45,8 +45,9 @@ function App() {
 
       if (!response.ok) throw new Error('Failed to fetch response');
 
-      const data: ChatResponse = await response.json();
-      setMessages((prev) => [...prev, data.message]);
+      const json = await response.json();
+      const chatResponse: ChatResponse = json.data;
+      setMessages((prev) => [...prev, chatResponse.message]);
     } catch (error) {
       console.error('Error:', error);
       // Handle error (e.g., show a toast or error message)

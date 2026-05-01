@@ -1,0 +1,34 @@
+.editor-pane {
+  background-color: var(--bg-editor);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-color);
+}
+
+.editor-header {
+  height: 35px;
+  background-color: var(--bg-sidebar);
+  display: flex;
+}
+
+.tab {
+  padding: 0 var(--spacing-md);
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.tab.active {
+  background-color: var(--bg-editor);
+  color: var(--text-bright);
+}
+
+.editor-content {
+  flex: 1;
+  padding: var(--spacing-md);
+  font-family: var(--font-code);
+  font-size: 14px;
+  overflow: auto;
+}
