@@ -1,29 +1,31 @@
 # AI-Chat-Box Monorepo
 
-A production-ready, scalable monorepo for a full-stack AI-Chat-Box application. This project supports Web, Mobile, Desktop, and Backend platforms with shared logic.
+A production-ready, scalable monorepo for a full-stack AI-Chat-Box application. This project supports Web, Mobile, Desktop, and Backend platforms with shared logic and advanced AI capabilities.
 
 ## 🚀 Project Structure
 
 - **`docs/`**: Project documentation (PRD, Architecture, Database, UI/UX, etc.).
 - **`apps/backend`**: Professional Node.js + Express + TypeScript API.
-  - **Structure**: Controllers, Services, Middleware, and Routes.
-  - **Endpoints**:
-    - `POST /api/chat`: General AI conversation.
-    - `POST /api/explain-code`: Analyze and explain code snippets.
-    - `POST /api/fix-code`: Identify and fix bugs in code.
-    - `POST /api/generate-code`: Generate code based on prompts.
+  - **Multi-AI Support**: Integrated support for OpenAI (GPT-4), Google Gemini, and Anthropic Claude via an adapter pattern.
+  - **Tool Use (Function Calling)**: AI can autonomously explore the codebase using tools like `list_files`, `read_file`, and `grep_search`.
+  - **Persistence**: Database integration using Prisma and SQLite for persistent chat history and user profiles.
+  - **Authentication**: JWT-based security with bcrypt password hashing.
+  - **Streaming**: Real-time response streaming via Server-Sent Events (SSE).
 - **`apps/frontend`**: React + Vite + TypeScript Web App.
-- **`apps/mobile`**: React Native (Expo) Mobile App.
-- **`apps/desktop`**: Electron Desktop Application.
-- **`packages/shared`**: Common TypeScript types, constants, and utility functions used across all platforms.
+  - **Monaco Editor**: Professional-grade code editing experience (VS Code engine).
+  - **Three-Pane Layout**: Integrated File Explorer, Code Editor, and AI Assistant.
+  - **AI Chat**: Markdown rendering with syntax highlighting and "Apply Changes" integration.
+- **`apps/mobile`**: React Native (Expo) app for on-the-go assistance.
+- **`apps/desktop`**: Professional Electron wrapper with secure IPC bridging.
+- **`packages/shared`**: Common TypeScript types, constants, and tool definitions.
 
 ## 🛠️ Tooling & Tech Stack
 
-- **Monorepo Management**: npm Workspaces
-- **Languages**: TypeScript, JavaScript
-- **Styling**: Vanilla CSS (Global & Modules)
+- **Monorepo**: npm Workspaces
+- **Backend**: Express, Prisma, SQLite, OpenAI/Gemini/Anthropic SDKs
+- **Frontend**: React, Vite, Monaco Editor, React Markdown
+- **Mobile/Desktop**: Expo, Electron
 - **Linting & Formatting**: ESLint + Prettier
-- **Build Tools**: Vite, TSC, Electron-Builder, Expo CLI
 
 ## 🏁 Getting Started
 
@@ -34,11 +36,15 @@ A production-ready, scalable monorepo for a full-stack AI-Chat-Box application. 
 
 ### Installation
 
-Install all dependencies for all workspaces from the root:
+Install all dependencies from the root:
 
 ```bash
 npm install
 ```
+
+### Configuration
+
+Create a `.env` file in `apps/backend/` based on `.env.example` and add your AI provider API keys.
 
 ### Development
 
@@ -46,24 +52,6 @@ Start all applications simultaneously:
 
 ```bash
 npm run dev
-```
-
-The project is configured to handle Windows-specific Node.js path issues automatically via `apps/mobile/metro.config.js`.
-
-To run a specific application:
-
-```bash
-# Backend
-npm run dev -w @ai-chat-box/backend
-
-# Frontend
-npm run dev -w @ai-chat-box/frontend
-
-# Mobile
-npm run start -w @ai-chat-box/mobile
-
-# Desktop
-npm run dev -w @ai-chat-box/desktop
 ```
 
 ### Building
@@ -78,7 +66,7 @@ npm run build
 
 - **ESLint**: Enforces code quality and TypeScript best practices.
 - **Prettier**: Enforces consistent code formatting.
-- **Shared Logic**: Always put common types and business logic in `packages/shared` to avoid duplication.
+- **Shared Logic**: Always put common types and business logic in `packages/shared`.
 
 ## 📄 License
 

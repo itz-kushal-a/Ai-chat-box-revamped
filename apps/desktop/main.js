@@ -1,20 +1,44 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const isDev = require('electron-is-dev');
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1200,
+    width: 1280,
     height: 800,
+    title: 'AI-Chat-Box',
+    backgroundColor: '#1e1e1e', // Match VS Code theme
     webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
+      nodeIntegration: false,    // Best practice for security
+      contextIsolation: true,   // Best practice for security
+      sandbox: true,            // Best practice for security
+      preload: path.join(__dirname, 'preload.js'),
     },
   });
 
-  // In production, load the built index.html
-  // In development, you might point to the Vite dev server
-  win.loadURL('http://localhost:5173'); 
+  // Hide default menu
+  win.setMenuBarVisibility(false);
+
+  if (isDev) {
+    win.loadURL('http://localhost:5173');
+    // Open the DevTools.
+    // win.webContents.openDevTools();
+  } else {
+    // In production, load the static build
+    win.loadFile(path.join(__dirname, '../frontend/dist/index.html'));
+  }
+
+  win.on('closed', () => {
+    app.quit();
+  });
 }
+
+// IPC Example: Handle messages from renderer
+ipcMain.on('toMain', (event, args) => {
+  console.log('Received in Main:', args);
+  // Send back
+  event.reply('fromMain', `Hello from Electron Main Process! Received: ${args}`);
+});
 
 app.whenReady().then(() => {
   createWindow();

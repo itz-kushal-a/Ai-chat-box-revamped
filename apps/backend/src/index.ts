@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { APP_NAME } from '@ai-chat-box/shared';
 import chatRoutes from './routes/chatRoutes';
+import projectRoutes from './routes/projectRoutes';
+import authRoutes from './routes/authRoutes';
 import { errorHandler } from './middleware/errorHandler';
 
 dotenv.config();
@@ -22,6 +24,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 // Routes
 app.use('/api', chatRoutes);
+app.use('/api/project', projectRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: `Welcome to ${APP_NAME} API` });
