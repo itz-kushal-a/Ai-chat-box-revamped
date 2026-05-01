@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.DS_Store
+*.log
+apps/frontend/dist
+apps/backend/dist
+apps/mobile/.expo
+apps/desktop/dist
+out

@@ -1,0 +1,12 @@
+{
+  "name": "@ai-chat-box/desktop",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^28.1.0"
+  }
+}

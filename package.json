@@ -1,0 +1,29 @@
+{
+  "name": "ai-chat-box",
+  "private": true,
+  "version": "1.0.0",
+  "description": "AI-Chat-Box Fullstack Monorepo",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm:dev:*\" \"npm:start:mobile\"",
+    "dev:backend": "npm run dev -w @ai-chat-box/backend",
+    "dev:frontend": "npm run dev -w @ai-chat-box/frontend",
+    "dev:desktop": "npm run dev -w @ai-chat-box/desktop",
+    "start:mobile": "npm run start -w @ai-chat-box/mobile",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "install:all": "npm install"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "concurrently": "^9.2.1",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3"
+  }
+}
